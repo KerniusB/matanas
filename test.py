@@ -5,11 +5,11 @@ import PIL
 import numpy as np
 import matplotlib.pyplot as plt
 
-im = Image.open('small.jpg', 'r')
+im = Image.open('small2.jpg', 'r')
 width, height = im.size
 pixel_values = list(im.getdata())
 
-im2 = Image.open('small2.jpg', 'r')
+im2 = Image.open('small3.jpg', 'r')
 width2, height2 = im2.size
 pixel_values2 = list(im2.getdata())
 
@@ -69,14 +69,14 @@ def getSkaidinys(brightnessArray):
             value = round(brightnessArray[index])
             value2 = round(brightnessArray[index+1])
             value3 = round(brightnessArray[index+width])
-            value4 = round(brightnessArray[index+width+1])
+            value4 = round(brightnessArray[index+width+1])#cia skaidinys
 
             rounded = (value + value2 + value3 + value4)/4
 
             temp2 = [rounded, rounded, rounded]
             tempLine2.append(temp2)
-            w += 2
-        h += 2
+            w += 2#cia skaidinys
+        h += 2#cia skaidinys
         l2.append(tempLine2)
 
     showImage(l2)
@@ -85,15 +85,33 @@ def getSkaidinys(brightnessArray):
 l2 = getSkaidinys(brightnessArray)
 belekas = getSkaidinys(brightnessArray2)
 
+def findMax(array1, array2):
+    maxDiff=0
+    maxDiffX=0
+
+    i=0
+    while i<len(array1):
+        if(abs(array1[i]-array2[i])>maxDiff):
+            maxDiff= abs(array1[i]-array2[i])
+            maxDiffX = i
+        i+=1
+    print("Maksimalus skirtumas tarp tasku: ", maxDiff)
+    if(maxDiffX==0):
+        x=0
+        y=0
+    else:
+        x = maxDiffX%(width/2) #cia skaidinys
+        y = maxDiffX//(width/2) #cia skaidinys
+
+    print("X: ", x)
+    print("Y: ", y)
+
 def drawGraph(doubleArray, doubleArray2):
     x = list(range(1, len(doubleArray)* len(doubleArray[0])+1))
     y=[]
     for w in doubleArray:
         for h in w:
             y.append(h[0])
-
-    print(len(x))
-    print(len(y))
 
     # plotting the points 
     plt.plot(x, y, label = "line 1")
@@ -125,6 +143,8 @@ def drawGraph(doubleArray, doubleArray2):
     
     # function to show the plot
     plt.show()
+
+    findMax(y, y2)
   
 
 # pip install matplotlib
