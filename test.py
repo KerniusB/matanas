@@ -8,11 +8,14 @@ import time
 
 skaidinysSize = 10
 
-im = Image.open('big.jpg', 'r')
+print("Iveskite 2 nuotraukų lokacijas")
+path1 = input()
+path2 = input()
+im = Image.open(path1, 'r')
 width, height = im.size
 pixel_values = list(im.getdata())
 
-im2 = Image.open('greenBlack.jpg', 'r')
+im2 = Image.open(path2, 'r')
 width2, height2 = im2.size
 pixel_values2 = list(im2.getdata())
 
@@ -115,7 +118,7 @@ def findMax(array1, array2):
             maxDiff = abs(array1[i]-array2[i])
             maxDiffX = i
         i += 1
-    print("Maksimalus skirtumas tarp tasku: ", maxDiff)
+    print("Maksimalus atsilenkimas tarp funkcijų reikšmių: ", maxDiff)
     if (maxDiffX == 0):
         x = 0
         y = 0
