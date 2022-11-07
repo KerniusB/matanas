@@ -12,7 +12,7 @@ im = Image.open('big.jpg', 'r')
 width, height = im.size
 pixel_values = list(im.getdata())
 
-im2 = Image.open('big.jpg', 'r')
+im2 = Image.open('greenBlack.jpg', 'r')
 width2, height2 = im2.size
 pixel_values2 = list(im2.getdata())
 
@@ -87,9 +87,9 @@ def getSkaidinys(brightnessArray):
             for i in range(0, skaidinysSize):
                 for j in range(0, skaidinysSize):
                     count += 1
-                    sum += round(brightnessArray[index+j+(width*i)])
+                    sum += brightnessArray[index+j+(width*i)]
 
-            rounded = sum/count
+            rounded =int(sum/count)
 
             temp2 = [rounded, rounded, rounded]
             tempLine2.append(temp2)
@@ -135,7 +135,7 @@ def drawGraph(doubleArray, doubleArray2):
             y.append(h[0])
 
     # plotting the points
-    plt.plot(x, y, label="line 1")
+    plt.plot(x, y, label="Pirma nuotrauka")
     # plt.scatter(x, y, label= "first", color= "green",
     #         marker= ".", s=1)
 
@@ -148,16 +148,16 @@ def drawGraph(doubleArray, doubleArray2):
             y2.append(h[0])
 
     # plotting the line 2 points
-    plt.plot(x2, y2, label="line 2")
+    plt.plot(x2, y2, label="Antra nuotrauka")
     # plt.scatter(x2, y2, label= "second", color= "blue",
     #         marker= ".", s=1)
 
     # naming the x axis
-    plt.xlabel('x - axis')
+    plt.xlabel('x - skaidiniai')
     # naming the y axis
-    plt.ylabel('y - axis')
+    plt.ylabel('y - ryškumas')
     # giving a title to my graph
-    plt.title('Two lines on same graph!')
+    plt.title('Nuotraukų palyginimo grafikas')
 
     # show a legend on the plot
     plt.legend()
